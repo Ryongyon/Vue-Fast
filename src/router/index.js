@@ -32,6 +32,23 @@ router.beforeEach((to, from, next) => {
     to.matched.length === 0 ? next({ path: '/404', replace: true }) : next()
 })
 
+// 全局前置守卫：判断是否需要重获用户数据
+router.beforeEach((to, from, next) => {
+    let store = router.app.$store
+    if (!store.state.user.data.token && utils.$cookie.get('token')) {
+        utils.$axios({
+            url: "https://my-json-server.typicode.com/ryongyon/vue-fast/users?token=" + utils.$cookie.get('token')
+        }).then(res => {
+            console.log('okok')
+            store.dispatch('user/set', res[0])
+        }).catch(err => {
+            console.log(err)
+            next({ path: '/401', replace: true })
+        })
+    }
+    next()
+})
+
 // 全局前置守卫：判断是否需要初始化用户数据
 router.beforeEach((to, from, next) => {
     let store = router.app.$store
