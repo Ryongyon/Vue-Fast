@@ -1,0 +1,28 @@
+{
+    "users": [
+        {
+            "uid"     : 1,
+            "username": "13OnTheTrack",
+            "nickname": "拾叁",
+            "role"    : "Admin",
+            "avatar"  : "https://cdn.v2ex.com/gravatar/9fe9ee30e730502f0d328846c64c3a6a?s=200&r=G&d=mm",
+            "token"   : "aaa123"
+        },
+        {
+            "uid"     : 2,
+            "username": "Jack",
+            "nickname": "杰克",
+            "role"    : "User",
+            "avatar"  : "https://cdn.v2ex.com/gravatar/9f18f3e7395b1a7a1ed911796d159fc4?s=200&r=G&d=mm",
+            "token"   : "bbb456"
+        },
+        {
+            "uid"     : 3,
+            "username": "John",
+            "nickname": "约翰",
+            "role"    : "User",
+            "avatar"  : "https://cdn.v2ex.com/gravatar/514d8ffabcdfc3cb4f790192e03a2877?s=200&r=G&d=mm",
+            "token"   : "ccc789"
+        }
+    ]
+}
