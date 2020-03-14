@@ -1,9 +1,11 @@
 /*********************
        Axios 封装
 **********************/
-import axios from 'axios' // https://www.kancloud.cn/yunye/axios/234845
+import axios from 'axios'
+import qs from 'qs'
 
 // 创建实例
+// 更多配置查询:https://www.kancloud.cn/yunye/axios/234845
 const http = axios.create({
     // API URL
     baseURL: process.env.NODE_ENV === 'development' ? process.env.VUE_APP_API_TEST_URL : process.env.VUE_APP_API_BESE_URL,
@@ -11,26 +13,18 @@ const http = axios.create({
     timeout: 60000,
     // 跨域请求是否提供凭据信息
     withCredentials: true,
-    /* // 头部信息
-    headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
-    },
-    // 向服务器发送前修改请求数据
-    transformRequest: function(data) {
-        // 将 JavaScript 值转换为 JSON 字符串
-        return JSON.stringify(data)
-    },
-    // 在传递给 then/catch 前修改响应数据
-    transformResponse: function(data) {
-        // 将 JSON 字符串转换为 JavaScript 对象
-        return JSON.parse(data)
-    } */
 })
 
 // 请求拦截器
 http.interceptors.request.use(
     config => {
-        // 在发出请求前做点什么...
+        // 处理 POST 请求
+        if (config.method === 'post') {
+            // 设置头部
+            config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+            // 处理 Data 参数
+            config.data = qs.stringify(config.data)
+        } 
         return config
     },
     error => {
