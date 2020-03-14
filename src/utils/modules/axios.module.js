@@ -1,17 +1,17 @@
 /*********************
        Axios 封装
 **********************/
-import axios from 'axios'
+import axios from 'axios' // https://www.kancloud.cn/yunye/axios/234845
 
 // 创建实例
-const http = axios.create({ // 更多配置详见: https://www.kancloud.cn/yunye/axios/234845
+const http = axios.create({
     // API URL
     baseURL: process.env.NODE_ENV === 'development' ? process.env.VUE_APP_API_TEST_URL : process.env.VUE_APP_API_BESE_URL,
     // 超时时长（毫秒）
     timeout: 60000,
     // 跨域请求是否提供凭据信息
     withCredentials: true,
-    // 头部信息
+    /* // 头部信息
     headers: {
         "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
     },
@@ -24,7 +24,7 @@ const http = axios.create({ // 更多配置详见: https://www.kancloud.cn/yunye
     transformResponse: function(data) {
         // 将 JSON 字符串转换为 JavaScript 对象
         return JSON.parse(data)
-    }
+    } */
 })
 
 // 请求拦截器
